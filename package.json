@@ -1,0 +1,31 @@
+{
+  "name": "cat-energ",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp style",
+    "start": "gulp serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.7",
+    "browser-sync": "^2.27.10",
+    "gulp": "^4.0.2",
+    "gulp-avif": "1.1.1",
+    "gulp-cached": "1.1.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "7.1.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-webp": "4.0.1",
+    "img-comparison-slider": "^8.0.4",
+    "node-sass": "^7.0.1",
+    "postcss": "^8.4.14",
+    "sass": "^1.53.0"
+  }
+}
