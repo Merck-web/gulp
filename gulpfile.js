@@ -12,12 +12,18 @@ const cached = require('gulp-cached')
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const gulpIf = require('gulp-if');
+const rename = require('gulp-rename');
+
+let imageIndex = 1; // Инициализация переменной для номера изображения
 
 const images = () => {
     return gulp.src(['source/img/*.*', '!source/img/*.svg'])
         .pipe(gulpIf(['!source/img/*.svg', '!source/img/*.svg'], avif({ quality: 50 })))
-        .pipe(gulpIf('!source/img/*.svg', webp()))
+        .pipe(gulpIf('!source/img/*.svg', webp({ resize: { width: 200, height: 250 } })))
         .pipe(gulpIf('!source/img/*.svg', imagemin()))
+        .pipe(rename(function (path) {
+            path.basename = (imageIndex++).toString(); // Установка имени файла на основе переменной imageIndex
+        }))
         .pipe(gulp.dest('source/img/dist'));
 }
 const style = () => {
