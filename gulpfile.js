@@ -11,18 +11,14 @@ const imagemin = require('gulp-imagemin')
 const cached = require('gulp-cached')
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
+const gulpIf = require('gulp-if');
 
 const images = () => {
     return gulp.src(['source/img/*.*', '!source/img/*.svg'])
-        .pipe(avif({ quality: 50 }))
-
-        .pipe(gulp.src("source/img/*.*"))
-        .pipe(webp())
-
-        .pipe(gulp.src("source/img/*.*"))
-        .pipe(imagemin())
-
-        .pipe(gulp.dest("source/img/dist"))
+        .pipe(gulpIf(['!source/img/*.svg', '!source/img/*.svg'], avif({ quality: 50 })))
+        .pipe(gulpIf('!source/img/*.svg', webp()))
+        .pipe(gulpIf('!source/img/*.svg', imagemin()))
+        .pipe(gulp.dest('source/img/dist'));
 }
 const style = () => {
     return gulp.src("source/sass/style.scss")
