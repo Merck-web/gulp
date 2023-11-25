@@ -15,6 +15,7 @@ const gulpIf = require('gulp-if');
 const rename = require('gulp-rename');
 
 let imageIndex = 1; // Инициализация переменной для номера изображения
+const version = '_1.0'
 
 const images = () => {
     return gulp.src(['source/img/*.*', '!source/img/*.svg'])
@@ -22,7 +23,7 @@ const images = () => {
         .pipe(gulpIf('!source/img/*.svg', webp({ resize: { width: 200, height: 250 } })))
         .pipe(gulpIf('!source/img/*.svg', imagemin()))
         .pipe(rename(function (path) {
-            path.basename = (imageIndex++).toString(); // Установка имени файла на основе переменной imageIndex
+            path.basename = (imageIndex++).toString().concat(version); // Установка имени файла на основе переменной imageIndex
         }))
         .pipe(gulp.dest('source/img/dist'));
 }
